@@ -1,59 +1,67 @@
-{% extends 'base.html' %}
-{% block title %}
-   О нас
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Данные</title>
+</head>
 
-{% block content %}
-<div class="row">
-  <div class="col-4">
-    <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
-      <nav class="nav nav-pills flex-column">
-        <a class="nav-link" href="#item-1">Элемент 1</a>
-        <nav class="nav nav-pills flex-column">
-          <a class="nav-link ms-3 my-1" href="#item-1-1">Элемент 1-1</a>
-          <a class="nav-link ms-3 my-1" href="#item-1-2">Элемент 1-2</a>
-        </nav>
-        <a class="nav-link" href="#item-2">Элемент 2</a>
-        <a class="nav-link" href="#item-3">Элемент 3</a>
-        <nav class="nav nav-pills flex-column">
-          <a class="nav-link ms-3 my-1" href="#item-3-1">Элемент 3-1</a>
-          <a class="nav-link ms-3 my-1" href="#item-3-2">Элемент 3-2</a>
-        </nav>
-      </nav>
-    </nav>
-  </div>
+<body>
+    <div class="container">
+        <h1>Расскажите о себе</h1>
 
-  <div class="col-8">
-    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
-      <div id="item-1">
-        <h4>Элемент 1</h4>
-        <p>...</p>
-      </div>
-      <div id="item-1-1">
-        <h5>Элемент 1-1</h5>
-        <p>...</p>
-      </div>
-      <div id="item-1-2">
-        <h5>Элемент 1-2</h5>
-        <p>...</p>
-      </div>
-      <div id="item-2">
-        <h4>Элемент 2</h4>
-        <p>...</p>
-      </div>
-      <div id="item-3">
-        <h4>Элемент 3</h4>
-        <p>...</p>
-      </div>
-      <div id="item-3-1">
-        <h5>Элемент 3-1</h5>
-        <p>...</p>
-      </div>
-      <div id="item-3-2">
-        <h5>Элемент 3-2</h5>
-        <p>...</p>
-      </div>
+        <form method="POST" action="/stat">
+            <div class="form-group">
+                <label for="title">Ваше имя</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="con">Ваш город</label>
+                <textarea class="form-control" id="con" name="con" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="cont">Ваш возраст</label>
+                <textarea class="form-control" id="cont" name="cont" required></textarea>
+            </div>
+
+                <div class="form-group">
+                <label for="gender">Ваш пол</label>
+                <select class="form-control" id="gender" name="conten" required>
+                    <option value="Мужской">Мужской</option>
+                    <option value="Женский">Женский</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Хобби</label>
+                <textarea class="form-control" id="content" name="content" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить пост</button>
+        </form>
+
+        <hr>
+        <h2>Посты</h2>
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ post.title }}</h4>
+                        <p class="card-text">Город: {{ post.con }}</p>
+                        <p class="card-text">Возраст: {{ post.cont }}</p>
+                        <p class="card-text">Пол: {{ post.conten }}</p>
+                        <p class="card-text">Хобби: {{ post.content }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-  </div>
-</div>
-{% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
